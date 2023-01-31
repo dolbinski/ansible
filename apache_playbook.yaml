@@ -1,0 +1,19 @@
+---
+- name: Install Apache2
+  hosts: all
+  become: yes
+  vars:
+    ansible_become_pass: 2007
+  tasks:
+    - name: Update package index
+      apt:
+        update_cache: true
+    - name: Install Apache2
+      apt:
+        name: apache2
+        state: present
+    - name: Start Apache2 service
+      service:
+        name: apache2
+        state: started
+
